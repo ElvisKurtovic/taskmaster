@@ -15,7 +15,7 @@ class TasksService {
         // ProxyState.toppings = temp
 
         ProxyState.tasks = [new Task(rawTask), ...ProxyState.tasks]
-        console.log(ProxyState.tasks)
+        // console.log(ProxyState.tasks)
     }
 
     delete(taskId) {
@@ -23,9 +23,11 @@ class TasksService {
         // let toppingIndex = temp.findIndex(p => p.id == toppingId)
         // temp.splice(toppingIndex, 1)
         // ProxyState.toppings = temp
+        if(window.confirm('Are You Sure')){
         ProxyState.tasks = ProxyState.tasks.filter(t => t.id != taskId)
 
     }
+}
 }
 
 export const tasksService = new TasksService()

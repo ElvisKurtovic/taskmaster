@@ -18,27 +18,36 @@
                 <img src="assets/img/logo.png" width="45" height="45" alt="" loading="lazy">
                 <span class="ml-2">Task Master</span>
             </a>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="List Title" name=""
-                    aria-label="CreateList">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-                    onsubmit="app.listsController.createList(event)">Create List</button>
-            </form>
-        </nav>
-    </header>
-    <main>
-        <div class="container-fluid my-4">
-
-
-            <div class="row" id="lists">
-
-
-
+            <div class="row mt-2">
+                <div class="col-12">
+                    <form onsubmit="app.listsController.createList(event)">
+                        <div class="form-group">
+                            <input required type="text" minlength="3" maxlength="15" name="title" placeholder="List Title">
+                            <span>Started On Date:</span>
+                            <input required type="date" name="body" placeholder="Complete By">
+                            <select name="" class="custom select" id="colorSelect">
+                                <!-- <option aria-placeholder="List Color"></option> -->
+                                <option id="bg-dark" value="bg-dark">Black</option>
+                                <option id="bg-primary" value="bg-primary">Blue</option>
+                                <option id="bg-warning" value="bg-warning">Orange</option>
+                                <option id="bg-success" value="bg-success">Green</option>
+                                <option id="bg-danger" value="bg-danger">Red</option>
+                                <option id="bg-info" value="bg-info">Teal</option>
+                            </select>
+                            <button class="btn-success btn" type="submit">Create List</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        </nav>
+        
+        </header>
+        <main class="container-fluid">
+             
+    <div class="row" id="lists">
 
+    </div>
 
-        <div id="app"></div>
 
     </main>
     <footer class="container-fluid bg-dark text-light">

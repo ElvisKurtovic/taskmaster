@@ -11,9 +11,9 @@ export default class TasksController {
         event.preventDefault()
         let form = event.target
         let rawTask = {
-            title: form.title.value,
+            body: form.body.value,
             listId: listId
-            // pizzaId
+            
         }
         tasksService.create(rawTask)
     }

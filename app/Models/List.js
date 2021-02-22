@@ -3,37 +3,33 @@ import { ProxyState } from "../AppState.js";
 
 
 export default class List {
-    constructor({ title, id = generateId(), }) {
+    constructor({ title, body, id = generateId(), color }) {
         this.title = title
+        this.body = body
         this.id = id
+        this.color = color
     }
-
     get Template() {
-        return /*html*/`<div class="col-6">
-        <div class="input-group">
-        <div class="input-group-prepend">
-            <button class="btn btn-primary" type="submit" onclick="">Create
-                Task</button>
-        </div>
-        <input type="text" placeholder="Task" aria-label="goal" class="form-control">
-        <input type="text" placeholder="Start Date" aria-label="startOn" class="form-control">
-        <input type="text" placeholder="Complete By" aria-label="completeBy" class="form-control">
-    </div>
-    <hr>
-        
-                    <p class="font-weight-bold">To Do List</p>
-
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <!-- Default checked -->
-                            <div class="custom-control custom-checkbox">
-                            <i class="fa fa-trash fa-2x text-danger d-flex align-self-end pointer" onclick="app.listsController.deleteList('${this.id}')" aria-hidden="true"></i>
-                                <input type="checkbox" class="custom-control-input" id="check1" checked>
-                                <label class="custom-control-label" for="check1">Check me</label>
+        return /*html*/`
+                <div class="col-4 ${this.color} border rounded shadow-sm text-light">
+                    <h1>${this.title}<button class="text-danger close mt-1"
+                    onclick="app.listsController.deleteList('${this.id}')"><span>&times;</span></button></h1>
+                    <h5>Started On: ${this.body}</h5>
+                    
+                    <form onsubmit="app.tasksController.create(event, '${this.id}')">
+                        <div class="form-group">
+                            <input required type="text" minlength='3' maxlength='50' name="body" placeholder="Task">
+                            <button class="btn btn-dark" type="submit">Add</button>
+                            </form>
                             </div>
-                        </li>
-                    </ul>
-                    </div>`
+                            <div class="row align-content-center justify-content-between">
+                        
+                            <div class='col-12'>
+                            ${this.Tasks}
+                            </div>
+                            </div>
+                </div>
+        `
 
     }
     get Tasks() {
@@ -42,3 +38,4 @@ export default class List {
         tasks.forEach(t => template += t.Template)
         return template
     }
+}
